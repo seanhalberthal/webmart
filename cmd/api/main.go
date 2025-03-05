@@ -8,11 +8,12 @@ func main() {
 	cfg := config{
 		addr: ":8080",
 	}
+
 	app := &application{
 		config: cfg,
 	}
 
-	mux := app.mount()
+	mux := app.routes()
 
-	log.Fatal(app.run(mux))
+	log.Fatal(app.serve(mux))
 }
