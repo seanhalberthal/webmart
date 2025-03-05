@@ -1,12 +1,13 @@
 package main
 
 import (
+	"github.com/bssmnt/webmart/internal/env"
 	"log"
 )
 
 func main() {
 	cfg := config{
-		addr: ":8080",
+		addr: env.GetString("ADDR", ":8080"),
 	}
 
 	app := &application{
