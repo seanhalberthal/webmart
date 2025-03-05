@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="init commit">
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="init commit 3">
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/db/db.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/store/products.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/store/storage.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/store/users.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/db_init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/health.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/health.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/env/env.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/env/env.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,8 +101,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/cmd/api" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/cmd/api" />
       <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/tests" />
     </key>
@@ -137,7 +147,8 @@
     <MESSAGE value="refined logic for loginUser function, still working on implementing tests, refresh_tokens are causing issues" />
     <MESSAGE value="added &quot;passed&quot; counter for tests" />
     <MESSAGE value="init commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="init commit" />
+    <MESSAGE value="init commit 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="init commit 3" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
