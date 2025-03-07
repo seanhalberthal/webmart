@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"github.com/bssmnt/webmart/internal/db"
 	"github.com/bssmnt/webmart/internal/env"
 	"github.com/bssmnt/webmart/internal/store"
 	"log"
@@ -19,7 +20,7 @@ func main() {
 		},
 	}
 
-	database, err := sql.Open("postgres", cfg.db.addr)
+	database, err := db.New(cfg.db.addr, cfg.db.maxOpenConns, cfg.db.maxIdleConns, cfg.db.maxIdleTime)
 	if err != nil {
 		log.Fatal(err)
 	}
