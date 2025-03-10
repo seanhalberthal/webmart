@@ -3,9 +3,9 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/bssmnt/webmart/internal/db"
-	"github.com/bssmnt/webmart/internal/env"
-	"github.com/bssmnt/webmart/internal/store"
+	"github.com/seanhalberthal/webmart/internal/db"
+	"github.com/seanhalberthal/webmart/internal/env"
+	"github.com/seanhalberthal/webmart/internal/store"
 	"log"
 )
 

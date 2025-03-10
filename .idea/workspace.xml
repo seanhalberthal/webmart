@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="started building out schemas and instantiated database connections, db.New needs work">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/main.go" afterDir="false" />
-    </list>
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added makefile for migrations, fixed db.New function" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,6 +65,8 @@
     "Go Test.TestRegister in github.com/bssmnt/webmart/tests/handlers.executor": "Run",
     "Go Test.TestRegisterUser in github.com/bssmnt/webmart/tests.executor": "Run",
     "Go Test.user_handlers_test.go.executor": "Run",
+    "Makefile Target.migrate-up.executor": "Run",
+    "Makefile Target.migration.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -80,7 +79,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "sql.codeStylePanel.last.previewDialect": "SQLite"
   },
   "keyToStringList": {
@@ -91,13 +90,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cmd/migrate/migrations" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/cmd/api" />
       <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Makefile Target.migrate-up">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="webmart_scratch" />
       <working_directory value="$PROJECT_DIR$" />
@@ -115,6 +115,24 @@
       <framework value="gotest" />
       <method v="2" />
     </configuration>
+    <configuration name="migrate-up" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="migrate-up" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="migration" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="migration" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Makefile Target.migrate-up" />
+        <item itemvalue="Makefile Target.migration" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -139,7 +157,8 @@
     <MESSAGE value="init commit" />
     <MESSAGE value="init commit 3" />
     <MESSAGE value="started building out schemas and instantiated database connections, db.New needs work" />
-    <option name="LAST_COMMIT_MESSAGE" value="started building out schemas and instantiated database connections, db.New needs work" />
+    <MESSAGE value="added makefile for migrations, fixed db.New function" />
+    <option name="LAST_COMMIT_MESSAGE" value="added makefile for migrations, fixed db.New function" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

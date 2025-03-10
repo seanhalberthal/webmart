@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/bssmnt/webmart/internal/store"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/seanhalberthal/webmart/internal/store"
 	"log"
 	"net/http"
 	"time"
