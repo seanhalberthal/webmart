@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added makefile for migrations, fixed db.New function">
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added more SQL migrations, fk between products and users on users.id">
+      <change afterPath="$PROJECT_DIR$/cmd/api/json.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/health.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/health.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +164,8 @@
     <MESSAGE value="init commit 3" />
     <MESSAGE value="started building out schemas and instantiated database connections, db.New needs work" />
     <MESSAGE value="added makefile for migrations, fixed db.New function" />
-    <option name="LAST_COMMIT_MESSAGE" value="added makefile for migrations, fixed db.New function" />
+    <MESSAGE value="added more SQL migrations, fk between products and users on users.id" />
+    <option name="LAST_COMMIT_MESSAGE" value="added more SQL migrations, fk between products and users on users.id" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
