@@ -25,6 +25,8 @@ func main() {
 		log.Fatal(err)
 	}
 
+	fmt.Println(database)
+
 	defer func(database *sql.DB) {
 		err := database.Close()
 		if err != nil {
