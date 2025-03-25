@@ -44,6 +44,14 @@ func (app *application) routes() http.Handler {
 
 	mux.Route("/v1", func(r chi.Router) {
 		r.Get("/health", app.healthCheckHandler)
+
+		r.Route("/products", func(r chi.Router) {
+			r.Post("/", app.createListingHandler)
+		})
+
+		r.Route("/users", func(r chi.Router) {
+			r.Post("/", app.createUserHandler)
+		})
 	})
 
 	return mux

@@ -8,11 +8,11 @@ import (
 
 type Storage struct {
 	Products interface {
-		Create(ctx context.Context, product *Product) error
+		ProductCreate(ctx context.Context, product *Product) error
 	}
 
 	Users interface {
-		Create(ctx context.Context, user *User) error
+		UserCreate(ctx context.Context, user *User) error
 	}
 }
 

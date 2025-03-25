@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added more SQL migrations, fk between products and users on users.id">
-      <change afterPath="$PROJECT_DIR$/cmd/api/json.go" afterDir="false" />
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added some JSON helpers in json.go">
+      <change afterPath="$PROJECT_DIR$/cmd/api/products.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requests.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.air.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.air.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/health.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/health.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/migrate/migrations/000001_create_users.up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/migrate/migrations/000001_create_users.up.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/migrate/migrations/000002_create_products.up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/migrate/migrations/000002_create_products.up.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/store/products.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/products_store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/store/storage.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/storage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/store/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/users_store.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,58 +65,88 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go Build.go build github.com/bssmnt/webmart.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestLoginUser in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestLoginUser/Successful_Login in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestLoginUser/Successful_Login_with_Username in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestLoginUser/Wrong_HTTP_Method in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestRegister in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestRegister in github.com/bssmnt/webmart/tests/handlers.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestRegisterUser in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.user_handlers_test.go.executor&quot;: &quot;Run&quot;,
-    &quot;Makefile Target.migrate-up.executor&quot;: &quot;Run&quot;,
-    &quot;Makefile Target.migration.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/bssmnt/playground/webmart&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;sql.codeStylePanel.last.previewDialect&quot;: &quot;SQLite&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.debug.executor": "Run",
+    "Go Build.go build github.com/bssmnt/webmart.executor": "Run",
+    "Go Test.TestLoginUser in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.TestLoginUser/Successful_Login in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.TestLoginUser/Successful_Login_with_Username in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.TestLoginUser/Wrong_HTTP_Method in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.TestRegister in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.TestRegister in github.com/bssmnt/webmart/tests/handlers.executor": "Run",
+    "Go Test.TestRegisterUser in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.user_handlers_test.go.executor": "Run",
+    "HTTP Request.All in requests.executor": "Run",
+    "HTTP Request.requests | #1.executor": "Run",
+    "HTTP Request.requests | #2.executor": "Run",
+    "Makefile Target.migrate-up.executor": "Run",
+    "Makefile Target.migration.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/bssmnt/playground/webmart",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "sql.codeStylePanel.last.previewDialect": "SQLite"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ],
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "PostgreSQL"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/cmd/migrate/migrations" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/cmd/migrate/migrations" />
       <recent name="$PROJECT_DIR$/cmd/api" />
       <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Makefile Target.migrate-up">
+  <component name="RunManager" selected="Go Build.debug">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="webmart_scratch" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="debug" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="webmart" />
+      <working_directory value="$PROJECT_DIR$" />
+      <EXTENSION ID="com.fapiko.jetbrains.plugins.better_direnv.runconfigs.GolandRunConfigurationExtension">
+        <option name="DIRENV_ENABLED" value="false" />
+        <option name="DIRENV_TRUSTED" value="false" />
+      </EXTENSION>
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </EXTENSION>
+      <kind value="PACKAGE" />
+      <package value="github.com/seanhalberthal/webmart/cmd/api" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/cmd/api/main.go" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
@@ -119,6 +156,15 @@
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+    <configuration name="All in requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/requests.http">
+      <method v="2" />
+    </configuration>
+    <configuration name="requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="#2" index="2" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="migrate-up" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
@@ -133,18 +179,29 @@
       </makefile>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Go Build.debug" />
+      <item itemvalue="HTTP Request.All in requests" />
+      <item itemvalue="HTTP Request.requests | #1" />
+      <item itemvalue="HTTP Request.requests | #2" />
+      <item itemvalue="Makefile Target.migrate-up" />
+      <item itemvalue="Makefile Target.migration" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Makefile Target.migrate-up" />
+        <item itemvalue="HTTP Request.requests | #2" />
+        <item itemvalue="HTTP Request.requests | #1" />
         <item itemvalue="Makefile Target.migration" />
+        <item itemvalue="Makefile Target.migrate-up" />
+        <item itemvalue="HTTP Request.All in requests" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-gosdk-d297c17c1fbd-57c114c3cede-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-243.25659.52" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-GO-243.25659.52" />
+        <option value="bundled-gosdk-d297c17c1fbd-57c114c3cede-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-243.26053.20" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-GO-243.26053.20" />
       </set>
     </attachedChunks>
   </component>
@@ -165,7 +222,8 @@
     <MESSAGE value="started building out schemas and instantiated database connections, db.New needs work" />
     <MESSAGE value="added makefile for migrations, fixed db.New function" />
     <MESSAGE value="added more SQL migrations, fk between products and users on users.id" />
-    <option name="LAST_COMMIT_MESSAGE" value="added more SQL migrations, fk between products and users on users.id" />
+    <MESSAGE value="added some JSON helpers in json.go" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some JSON helpers in json.go" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

@@ -1,0 +1,28 @@
+GET http://localhost:8080/v1/health
+Content-Type: application/json
+
+{}
+###
+
+POST http://localhost:8080/v1/products
+Content-Type: application/json
+
+{
+  "user_id": "f93fc08b-1f84-4bf7-8708-9cbec27e0863",
+  "title": "First Product",
+  "description": "check this shit out",
+  "rating": 3,
+  "price": 20,
+  "stock": 5
+}
+###
+
+POST http://localhost:8080/v1/users
+Content-Type: application/json
+
+{
+  "name": "a dude",
+  "username": "a dude with a username",
+  "email": "dude@mail.com",
+  "password": "dudepass"
+}

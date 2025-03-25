@@ -5,6 +5,10 @@ MIGRATIONS_PATH = ./cmd/migrate/migrations
 test:
 	@go test -v ./...
 
+.PHONY: psql
+psql:
+	@psql -U postgres -d webmart
+
 .PHONY: migrate-create
 migration:
 	@migrate create -seq -ext sql -dir $(MIGRATIONS_PATH) $(filter-out $@,$(MAKECMDGOALS))
