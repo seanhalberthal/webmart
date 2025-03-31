@@ -3,6 +3,7 @@ package store
 import (
 	"context"
 	"database/sql"
+	"fmt"
 	"github.com/google/uuid"
 	"time"
 )
@@ -34,4 +35,21 @@ func (s *ProductStore) ProductCreate(ctx context.Context, product *Product) erro
 	}
 
 	return nil
+}
+
+func (s *ProductStore) ProductGet(ctx context.Context, productID uuid.UUID) (*Product, error) {
+	query := `SELECT id, title, price FROM products WHERE id = $1`
+
+	row := s.db.QueryRowContext(ctx, query, productID)
+	product := &Product{}
+
+	err := row.Scan(&product.ID, &product.Title, &product.Price)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, fmt.Errorf("product not found")
+		}
+		return nil, err
+	}
+
+	return product, nil
 }

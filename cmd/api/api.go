@@ -47,6 +47,7 @@ func (app *application) routes() http.Handler {
 
 		r.Route("/products", func(r chi.Router) {
 			r.Post("/", app.createListingHandler)
+			r.Get("/{productID}", app.getProductHandler)
 		})
 
 		r.Route("/users", func(r chi.Router) {

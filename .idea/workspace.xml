@@ -4,19 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added some JSON helpers in json.go">
-      <change afterPath="$PROJECT_DIR$/cmd/api/products.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requests.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.air.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.air.toml" afterDir="false" />
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="users and products tables now working correctly, http requests pass the data to the endpoint and are processed and inserted">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api/health.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/health.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/migrate/migrations/000001_create_users.up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/migrate/migrations/000001_create_users.up.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/migrate/migrations/000002_create_products.up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/migrate/migrations/000002_create_products.up.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/store/products.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/products_store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/products.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/products.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/store/products_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/products_store.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/store/storage.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/storage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/store/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/users_store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requests.http" beforeDir="false" afterPath="$PROJECT_DIR$/requests.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +76,8 @@
     "HTTP Request.All in requests.executor": "Run",
     "HTTP Request.requests | #1.executor": "Run",
     "HTTP Request.requests | #2.executor": "Run",
+    "HTTP Request.requests | #3.executor": "Run",
+    "HTTP Request.requests | #4.executor": "Run",
     "Makefile Target.migrate-up.executor": "Run",
     "Makefile Target.migration.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -158,19 +154,16 @@
       <framework value="gotest" />
       <method v="2" />
     </configuration>
-    <configuration name="All in requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/requests.http">
-      <method v="2" />
-    </configuration>
     <configuration name="requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="#2" index="2" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="migrate-up" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
-      <makefile filename="$PROJECT_DIR$/Makefile" target="migrate-up" workingDirectory="" arguments="">
-        <envs />
-      </makefile>
+    <configuration name="requests | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="#3" index="3" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="requests | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="#4" index="4" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="migration" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
@@ -181,19 +174,19 @@
     </configuration>
     <list>
       <item itemvalue="Go Build.debug" />
-      <item itemvalue="HTTP Request.All in requests" />
+      <item itemvalue="HTTP Request.requests | #4" />
+      <item itemvalue="HTTP Request.requests | #3" />
       <item itemvalue="HTTP Request.requests | #1" />
       <item itemvalue="HTTP Request.requests | #2" />
-      <item itemvalue="Makefile Target.migrate-up" />
       <item itemvalue="Makefile Target.migration" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.requests | #4" />
         <item itemvalue="HTTP Request.requests | #2" />
         <item itemvalue="HTTP Request.requests | #1" />
+        <item itemvalue="HTTP Request.requests | #3" />
         <item itemvalue="Makefile Target.migration" />
-        <item itemvalue="Makefile Target.migrate-up" />
-        <item itemvalue="HTTP Request.All in requests" />
       </list>
     </recent_temporary>
   </component>
@@ -223,7 +216,8 @@
     <MESSAGE value="added makefile for migrations, fixed db.New function" />
     <MESSAGE value="added more SQL migrations, fk between products and users on users.id" />
     <MESSAGE value="added some JSON helpers in json.go" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some JSON helpers in json.go" />
+    <MESSAGE value="users and products tables now working correctly, http requests pass the data to the endpoint and are processed and inserted" />
+    <option name="LAST_COMMIT_MESSAGE" value="users and products tables now working correctly, http requests pass the data to the endpoint and are processed and inserted" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

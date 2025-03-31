@@ -3,16 +3,18 @@ package store
 import (
 	"context"
 	"database/sql"
+	"github.com/google/uuid"
 	_ "github.com/lib/pq"
 )
 
 type Storage struct {
 	Products interface {
-		ProductCreate(ctx context.Context, product *Product) error
+		ProductCreate(context.Context, *Product) error
+		ProductGet(context.Context, uuid.UUID) (*Product, error)
 	}
 
 	Users interface {
-		UserCreate(ctx context.Context, user *User) error
+		UserCreate(context.Context, *User) error
 	}
 }
 

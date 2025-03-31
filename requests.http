@@ -22,7 +22,11 @@ Content-Type: application/json
 
 {
   "name": "a dude",
-  "username": "a dude with a username",
-  "email": "dude@mail.com",
+  "username": "a dude with a username2",
+  "email": "dude2@mail.com",
   "password": "dudepass"
 }
+
+###
+GET http://localhost:8080/v1/products/76ee678a-bd1b-4f55-b857-246eef1d3246
+Content-Type: application/json
