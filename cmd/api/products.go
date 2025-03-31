@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-type CreateListingPayload struct {
+type CreateProductPayload struct {
 	UserID      uuid.UUID `json:"user_id"`
 	Title       string    `json:"title"`
 	Description string    `json:"description"`
@@ -17,13 +17,19 @@ type CreateListingPayload struct {
 	Stock       int       `json:"stock"`
 }
 
-func (app *application) createListingHandler(w http.ResponseWriter, r *http.Request) {
-	var payload CreateListingPayload
+func getProductID(w http.ResponseWriter, r *http.Request) uuid.UUID {
+	idStr := chi.URLParam(r, "productID")
+	id, err := uuid.Parse(idStr)
+	if err != nil {
+		handleError(w, http.StatusBadRequest, err)
+	}
+	return id
+}
+
+func (app *application) createProductHandler(w http.ResponseWriter, r *http.Request) {
+	var payload CreateProductPayload
 	if err := readJSON(w, r, &payload); err != nil {
-		err := respondWithErrorJSON(w, http.StatusBadRequest, err.Error())
-		if err != nil {
-			return
-		}
+		handleError(w, http.StatusBadRequest, err)
 		return
 	}
 
@@ -39,47 +45,48 @@ func (app *application) createListingHandler(w http.ResponseWriter, r *http.Requ
 	ctx := r.Context()
 
 	if err := app.store.Products.ProductCreate(ctx, listing); err != nil {
-		err := respondWithErrorJSON(w, http.StatusInternalServerError, err.Error())
-		if err != nil {
-			return
-		}
+		handleError(w, http.StatusInternalServerError, err)
 		return
 	}
 
 	if err := writeJSON(w, http.StatusCreated, listing); err != nil {
-		err := respondWithErrorJSON(w, http.StatusInternalServerError, err.Error())
-		if err != nil {
-			return
-		}
+		handleError(w, http.StatusInternalServerError, err)
 		return
 	}
 }
 
 func (app *application) getProductHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	idStr := chi.URLParam(r, "productID")
-
-	id, err := uuid.Parse(idStr)
-	if err != nil {
-		err := respondWithErrorJSON(w, http.StatusBadRequest, "invalid product id")
-		if err != nil {
-			return
-		}
-	}
+	id := getProductID(w, r)
 
 	product, err := app.store.Products.ProductGet(ctx, id)
 	if err != nil {
-		err := respondWithErrorJSON(w, http.StatusInternalServerError, err.Error())
-		if err != nil {
-			return
-		}
+		handleError(w, http.StatusNotFound, err)
+		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(product); err != nil {
-		err := respondWithErrorJSON(w, http.StatusInternalServerError, err.Error())
-		if err != nil {
-			return
-		}
+		handleError(w, http.StatusInternalServerError, err)
+		return
+	}
+}
+
+func (app *application) deleteProductHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	id := getProductID(w, r)
+
+	err := app.store.Products.ProductDelete(ctx, id)
+	if err != nil {
+		handleError(w, http.StatusNotFound, err)
+	}
+
+	deletedProduct := map[string]string{
+		"message":   "Product deleted",
+		"productID": id.String(),
+	}
+
+	if err := writeJSONResponse(w, http.StatusOK, deletedProduct); err != nil {
+		handleError(w, http.StatusInternalServerError, err)
 	}
 }

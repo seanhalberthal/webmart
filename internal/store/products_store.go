@@ -3,6 +3,7 @@ package store
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"fmt"
 	"github.com/google/uuid"
 	"time"
@@ -29,7 +30,9 @@ func (s *ProductStore) ProductCreate(ctx context.Context, product *Product) erro
 		VALUES ($1, $2, $3, $4, $5, $6)
 		RETURNING id, created_at, updated_at`
 
-	err := s.db.QueryRowContext(ctx, query, product.UserID, product.Title, product.Description, product.Rating, product.Price, product.Stock).Scan(&product.ID, &product.CreatedAt, &product.UpdatedAt)
+	row := s.db.QueryRowContext(ctx, query, product.UserID, product.Title, product.Description, product.Rating, product.Price, product.Stock)
+
+	err := row.Scan(&product.ID, &product.CreatedAt, &product.UpdatedAt)
 	if err != nil {
 		return err
 	}
@@ -45,11 +48,22 @@ func (s *ProductStore) ProductGet(ctx context.Context, productID uuid.UUID) (*Pr
 
 	err := row.Scan(&product.ID, &product.Title, &product.Price)
 	if err != nil {
-		if err == sql.ErrNoRows {
+		if errors.Is(err, sql.ErrNoRows) {
 			return nil, fmt.Errorf("product not found")
 		}
 		return nil, err
 	}
 
 	return product, nil
+}
+
+func (s *ProductStore) ProductDelete(ctx context.Context, productID uuid.UUID) error {
+	query := `DELETE FROM products WHERE id = $1`
+
+	_, err := s.db.ExecContext(ctx, query, productID)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

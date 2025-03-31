@@ -24,3 +24,15 @@ func respondWithErrorJSON(w http.ResponseWriter, status int, message string) err
 
 	return writeJSON(w, status, &envelope{Error: message})
 }
+
+func handleError(w http.ResponseWriter, statusCode int, err error) {
+	err = respondWithErrorJSON(w, statusCode, err.Error())
+	if err != nil {
+		return
+	}
+}
+
+func writeJSONResponse(w http.ResponseWriter, _ int, data interface{}) error {
+	w.Header().Set("Content-Type", "application/json")
+	return json.NewEncoder(w).Encode(data)
+}

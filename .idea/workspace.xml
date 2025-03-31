@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added ProductGet and tidied up storage codebase a bit">
-      <change beforePath="$PROJECT_DIR$/internal/store/users_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/users_store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/health.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/health.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/json.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/json.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/products.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/products.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/store/products_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/products_store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/store/storage.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/storage.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requests.http" beforeDir="false" afterPath="$PROJECT_DIR$/requests.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,6 +81,7 @@
     "HTTP Request.requests | #2.executor": "Run",
     "HTTP Request.requests | #3.executor": "Run",
     "HTTP Request.requests | #4.executor": "Run",
+    "HTTP Request.requests | #5.executor": "Run",
     "Makefile Target.migrate-up.executor": "Run",
     "Makefile Target.migration.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -162,27 +170,24 @@
     <configuration name="requests | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="#4" index="4" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="migration" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
-      <makefile filename="$PROJECT_DIR$/Makefile" target="migration" workingDirectory="" arguments="">
-        <envs />
-      </makefile>
+    <configuration name="requests | #5" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="#5" index="5" runType="Run single request">
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Go Build.debug" />
+      <item itemvalue="HTTP Request.requests | #5" />
       <item itemvalue="HTTP Request.requests | #4" />
       <item itemvalue="HTTP Request.requests | #3" />
       <item itemvalue="HTTP Request.requests | #1" />
       <item itemvalue="HTTP Request.requests | #2" />
-      <item itemvalue="Makefile Target.migration" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.requests | #2" />
         <item itemvalue="HTTP Request.requests | #3" />
         <item itemvalue="HTTP Request.requests | #4" />
-        <item itemvalue="HTTP Request.requests | #2" />
+        <item itemvalue="HTTP Request.requests | #5" />
         <item itemvalue="HTTP Request.requests | #1" />
-        <item itemvalue="Makefile Target.migration" />
       </list>
     </recent_temporary>
   </component>

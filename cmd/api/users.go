@@ -17,10 +17,7 @@ type CreateUserPayload struct {
 func (app *application) createUserHandler(w http.ResponseWriter, r *http.Request) {
 	var payload CreateUserPayload
 	if err := readJSON(w, r, &payload); err != nil {
-		err := respondWithErrorJSON(w, http.StatusBadRequest, err.Error())
-		if err != nil {
-			return
-		}
+		handleError(w, http.StatusBadRequest, err)
 		return
 	}
 
@@ -35,18 +32,10 @@ func (app *application) createUserHandler(w http.ResponseWriter, r *http.Request
 	ctx := r.Context()
 
 	if err := app.store.Users.UserCreate(ctx, user); err != nil {
-		err := respondWithErrorJSON(w, http.StatusInternalServerError, err.Error())
-		if err != nil {
-			return
-		}
-		return
+		handleError(w, http.StatusInternalServerError, err)
 	}
 
 	if err := writeJSON(w, http.StatusCreated, user); err != nil {
-		err := respondWithErrorJSON(w, http.StatusInternalServerError, err.Error())
-		if err != nil {
-			return
-		}
-		return
+		handleError(w, http.StatusInternalServerError, err)
 	}
 }
