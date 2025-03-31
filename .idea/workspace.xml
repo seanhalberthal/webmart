@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="users and products tables now working correctly, http requests pass the data to the endpoint and are processed and inserted">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api/products.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/products.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/store/products_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/products_store.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/store/storage.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/storage.go" afterDir="false" />
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added ProductGet and tidied up storage codebase a bit">
+      <change beforePath="$PROJECT_DIR$/internal/store/users_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/users_store.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requests.http" beforeDir="false" afterPath="$PROJECT_DIR$/requests.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,10 +178,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.requests | #3" />
         <item itemvalue="HTTP Request.requests | #4" />
         <item itemvalue="HTTP Request.requests | #2" />
         <item itemvalue="HTTP Request.requests | #1" />
-        <item itemvalue="HTTP Request.requests | #3" />
         <item itemvalue="Makefile Target.migration" />
       </list>
     </recent_temporary>
@@ -217,7 +213,8 @@
     <MESSAGE value="added more SQL migrations, fk between products and users on users.id" />
     <MESSAGE value="added some JSON helpers in json.go" />
     <MESSAGE value="users and products tables now working correctly, http requests pass the data to the endpoint and are processed and inserted" />
-    <option name="LAST_COMMIT_MESSAGE" value="users and products tables now working correctly, http requests pass the data to the endpoint and are processed and inserted" />
+    <MESSAGE value="added ProductGet and tidied up storage codebase a bit" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ProductGet and tidied up storage codebase a bit" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
