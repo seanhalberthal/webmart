@@ -49,7 +49,7 @@ func (app *application) createProductHandler(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	if err := writeJSON(w, http.StatusCreated, listing); err != nil {
+	if err := writeJSONResponse(w, http.StatusCreated, listing); err != nil {
 		handleError(w, http.StatusInternalServerError, err)
 		return
 	}
@@ -117,7 +117,7 @@ func (app *application) updateProductHandler(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	if err := writeJSON(w, http.StatusOK, product); err != nil {
+	if err := writeJSONResponse(w, http.StatusOK, product); err != nil {
 		handleError(w, http.StatusInternalServerError, err)
 		return
 	}

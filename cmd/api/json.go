@@ -32,7 +32,10 @@ func handleError(w http.ResponseWriter, statusCode int, err error) {
 	}
 }
 
-func writeJSONResponse(w http.ResponseWriter, _ int, data interface{}) error {
-	w.Header().Set("Content-Type", "application/json")
-	return json.NewEncoder(w).Encode(data)
+func writeJSONResponse(w http.ResponseWriter, status int, data interface{}) error {
+	type envelope struct {
+		Data any `json:"data"`
+	}
+
+	return writeJSON(w, status, &envelope{Data: data})
 }

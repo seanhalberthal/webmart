@@ -11,7 +11,7 @@ func (app *application) healthCheckHandler(w http.ResponseWriter, _ *http.Reques
 		"version": version,
 	}
 
-	if err := writeJSON(w, http.StatusOK, data); err != nil {
+	if err := writeJSONResponse(w, http.StatusOK, data); err != nil {
 		handleError(w, http.StatusInternalServerError, err)
 		return
 	}

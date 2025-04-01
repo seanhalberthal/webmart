@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="reformatted error handling and added product deletion">
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added update product handler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/health.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/health.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/json.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/json.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/products.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/products.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/store/products_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/products_store.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/store/storage.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/storage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/users.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requests.http" beforeDir="false" afterPath="$PROJECT_DIR$/requests.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -181,11 +181,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.requests | #6" />
+        <item itemvalue="HTTP Request.requests | #5" />
+        <item itemvalue="HTTP Request.requests | #4" />
         <item itemvalue="HTTP Request.requests | #2" />
         <item itemvalue="HTTP Request.requests | #3" />
-        <item itemvalue="HTTP Request.requests | #4" />
-        <item itemvalue="HTTP Request.requests | #5" />
+        <item itemvalue="HTTP Request.requests | #6" />
       </list>
     </recent_temporary>
   </component>
@@ -218,7 +218,8 @@
     <MESSAGE value="users and products tables now working correctly, http requests pass the data to the endpoint and are processed and inserted" />
     <MESSAGE value="added ProductGet and tidied up storage codebase a bit" />
     <MESSAGE value="reformatted error handling and added product deletion" />
-    <option name="LAST_COMMIT_MESSAGE" value="reformatted error handling and added product deletion" />
+    <MESSAGE value="added update product handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="added update product handler" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

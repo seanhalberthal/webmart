@@ -32,7 +32,7 @@ GET http://localhost:8080/v1/products/631b735b-9f0e-4cc8-a06b-ce74d8201926
 Content-Type: application/json
 
 ###
-DELETE http://localhost:8080/v1/products/6d5895c8-8f04-421a-883a-a53aa2648817
+DELETE http://localhost:8080/v1/products/631b735b-9f0e-4cc8-a06b-ce74d8201926
 Content-Type: application/json
 
 ###
