@@ -36,7 +36,7 @@ DELETE http://localhost:8080/v1/products/631b735b-9f0e-4cc8-a06b-ce74d8201926
 Content-Type: application/json
 
 ###
-PATCH http://localhost:8080/v1/products/d09be771-c55c-4083-9a30-ee0e29360640
+PATCH http://localhost:8080/v1/products/2858644d-4ef4-4b88-b629-ffd62d311e07
 Content-Type: application/json
 
 {

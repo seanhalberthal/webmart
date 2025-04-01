@@ -17,6 +17,7 @@ type Product struct {
 	Rating      int       `json:"rating"`
 	Price       float64   `json:"price"`
 	Stock       int       `json:"stock"`
+	Version     int       `json:"version"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 }
@@ -41,12 +42,22 @@ func (s *ProductStore) ProductCreate(ctx context.Context, product *Product) erro
 }
 
 func (s *ProductStore) ProductGet(ctx context.Context, productID uuid.UUID) (*Product, error) {
-	query := `SELECT id, title, price FROM products WHERE id = $1`
+	query := `SELECT id, user_id, title, description, price, stock, version, created_at, updated_at FROM products WHERE id = $1`
 
 	row := s.db.QueryRowContext(ctx, query, productID)
 	product := &Product{}
 
-	err := row.Scan(&product.ID, &product.Title, &product.Price)
+	err := row.Scan(
+		&product.ID,
+		&product.UserID,
+		&product.Title,
+		&product.Description,
+		&product.Price,
+		&product.Stock,
+		&product.Version,
+		&product.CreatedAt,
+		&product.UpdatedAt)
+
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return nil, fmt.Errorf("product not found")
@@ -78,20 +89,16 @@ func (s *ProductStore) ProductDelete(ctx context.Context, productID uuid.UUID) e
 }
 
 func (s *ProductStore) ProductUpdate(ctx context.Context, product *Product) error {
-	query := `UPDATE products SET title = $1, description = $2 WHERE id = $3`
+	query := `UPDATE products SET title = $1, description = $2, version = version + 1 WHERE id = $3 AND version = $4 RETURNING version`
 
-	res, err := s.db.ExecContext(ctx, query, product.Title, product.Description, product.ID)
+	err := s.db.QueryRowContext(ctx, query, product.Title, product.Description, product.ID, product.Version).Scan(&product.Version)
 	if err != nil {
-		return err
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return err
-	}
-
-	if rows == 0 {
-		return fmt.Errorf("product not found")
+		switch {
+		case errors.Is(err, sql.ErrNoRows):
+			return fmt.Errorf("product not found")
+		default:
+			return err
+		}
 	}
 
 	return nil
