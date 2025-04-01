@@ -79,14 +79,46 @@ func (app *application) deleteProductHandler(w http.ResponseWriter, r *http.Requ
 	err := app.store.Products.ProductDelete(ctx, id)
 	if err != nil {
 		handleError(w, http.StatusNotFound, err)
+		return
+	}
+}
+
+type UpdateProductPayload struct {
+	Title       string  `json:"title" validate:"omitempty,min=1,max=100"`
+	Description string  `json:"description" validate:"omitempty,min=1,max=100"`
+	Price       float64 `json:"price" validate:"omitempty,min=0"`
+	Stock       int     `json:"stock" validate:"omitempty,min=0"`
+}
+
+func (app *application) updateProductHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	id := getProductID(w, r)
+
+	var payload UpdateProductPayload
+	if err := readJSON(w, r, &payload); err != nil {
+		handleError(w, http.StatusBadRequest, err)
+		return
 	}
 
-	deletedProduct := map[string]string{
-		"message":   "Product deleted",
-		"productID": id.String(),
+	product, err := app.store.Products.ProductGet(ctx, id)
+	if err != nil {
+		handleError(w, http.StatusNotFound, err)
+		return
 	}
 
-	if err := writeJSONResponse(w, http.StatusOK, deletedProduct); err != nil {
+	product.Title = payload.Title
+	product.Description = payload.Description
+	product.Price = payload.Price
+	product.Stock = payload.Stock
+
+	err = app.store.Products.ProductUpdate(ctx, product)
+	if err != nil {
 		handleError(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	if err := writeJSON(w, http.StatusOK, product); err != nil {
+		handleError(w, http.StatusInternalServerError, err)
+		return
 	}
 }

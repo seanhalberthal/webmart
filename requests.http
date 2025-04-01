@@ -8,7 +8,7 @@ POST http://localhost:8080/v1/products
 Content-Type: application/json
 
 {
-  "user_id": "e41e9bc1-c21d-4673-9f43-e9c5d59baa4d",
+  "user_id": "12e9762f-e334-4f1f-af40-41234737c926",
   "title": "First Product",
   "description": "check this shit out",
   "rating": 3,
@@ -22,15 +22,26 @@ Content-Type: application/json
 
 {
   "name": "a dude",
-  "username": "a dude with a username",
-  "email": "dude@mail.com",
+  "username": "a dude with a username1",
+  "email": "dude1@mail.com",
   "password": "dudepass"
 }
 
 ###
-GET http://localhost:8080/v1/products/6d5895c8-8f04-421a-883a-a53aa2648817
+GET http://localhost:8080/v1/products/631b735b-9f0e-4cc8-a06b-ce74d8201926
 Content-Type: application/json
 
 ###
 DELETE http://localhost:8080/v1/products/6d5895c8-8f04-421a-883a-a53aa2648817
 Content-Type: application/json
+
+###
+PATCH http://localhost:8080/v1/products/d09be771-c55c-4083-9a30-ee0e29360640
+Content-Type: application/json
+
+{
+  "title": "newest title",
+  "description": "a whole new description 2",
+  "price": 50000,
+  "stock": 69
+}

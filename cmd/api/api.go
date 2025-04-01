@@ -47,8 +47,13 @@ func (app *application) routes() http.Handler {
 
 		r.Route("/products", func(r chi.Router) {
 			r.Post("/", app.createProductHandler)
-			r.Get("/{productID}", app.getProductHandler)
-			r.Delete("/{productID}", app.deleteProductHandler)
+
+			r.Route("/{productID}", func(r chi.Router) {
+				r.Get("/", app.getProductHandler)
+				r.Delete("/", app.deleteProductHandler)
+				r.Patch("/", app.updateProductHandler)
+
+			})
 		})
 
 		r.Route("/users", func(r chi.Router) {

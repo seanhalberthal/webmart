@@ -60,9 +60,38 @@ func (s *ProductStore) ProductGet(ctx context.Context, productID uuid.UUID) (*Pr
 func (s *ProductStore) ProductDelete(ctx context.Context, productID uuid.UUID) error {
 	query := `DELETE FROM products WHERE id = $1`
 
-	_, err := s.db.ExecContext(ctx, query, productID)
+	res, err := s.db.ExecContext(ctx, query, productID)
 	if err != nil {
 		return err
+	}
+
+	rows, err := res.RowsAffected()
+	if err != nil {
+		return err
+	}
+
+	if rows == 0 {
+		return fmt.Errorf("product not found")
+	}
+
+	return nil
+}
+
+func (s *ProductStore) ProductUpdate(ctx context.Context, product *Product) error {
+	query := `UPDATE products SET title = $1, description = $2 WHERE id = $3`
+
+	res, err := s.db.ExecContext(ctx, query, product.Title, product.Description, product.ID)
+	if err != nil {
+		return err
+	}
+
+	rows, err := res.RowsAffected()
+	if err != nil {
+		return err
+	}
+
+	if rows == 0 {
+		return fmt.Errorf("product not found")
 	}
 
 	return nil
