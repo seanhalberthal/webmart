@@ -3,6 +3,7 @@ package store
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"github.com/google/uuid"
 	"time"
 )
@@ -34,4 +35,26 @@ func (s *UserStore) UserCreate(ctx context.Context, user *User) error {
 	}
 
 	return nil
+}
+
+func (s *UserStore) UserGet(ctx context.Context, userID uuid.UUID) (*User, error) {
+	query := `SELECT id, username, email, password, created_at FROM users WHERE id = $1`
+
+	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
+	defer cancel()
+
+	user := &User{}
+	row := s.db.QueryRowContext(ctx, query, userID)
+
+	err := row.Scan(&user.ID, &user.Name, &user.Email, &user.Password, &user.CreatedAt)
+	if err != nil {
+		switch {
+		case errors.Is(err, sql.ErrNoRows):
+			return nil, err
+		default:
+			return user, nil
+		}
+	}
+
+	return user, nil
 }

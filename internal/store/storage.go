@@ -22,9 +22,11 @@ type Storage struct {
 
 	Users interface {
 		UserCreate(context.Context, *User) error
+		UserGet(context.Context, uuid.UUID) (*User, error)
 	}
 
 	Reviews interface {
+		ReviewCreate(context.Context, *Review) error
 		ReviewGet(context.Context, uuid.UUID) ([]Review, error)
 	}
 }

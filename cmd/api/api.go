@@ -58,6 +58,13 @@ func (app *application) routes() http.Handler {
 
 		r.Route("/users", func(r chi.Router) {
 			r.Post("/", app.createUserHandler)
+
+			r.Route("/{userID}", func(r chi.Router) {
+				r.Get("/", app.getUserHandler)
+				//r.Delete("/", app.deleteUserHandler)
+				//r.Patch("/", app.updateUserHandler)
+
+			})
 		})
 	})
 
