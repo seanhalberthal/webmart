@@ -1,22 +1,23 @@
+### health check
 GET http://localhost:8080/v1/health
 Content-Type: application/json
 
 {}
-###
 
+### create product
 POST http://localhost:8080/v1/products
 Content-Type: application/json
 
 {
-  "user_id": "12e9762f-e334-4f1f-af40-41234737c926",
+  "user_id": "335ba3b3-06ec-4e36-a66e-b333d5e79504",
   "title": "First Product",
   "description": "check this shit out",
   "rating": 3,
   "price": 20,
   "stock": 5
 }
-###
 
+### create user
 POST http://localhost:8080/v1/users
 Content-Type: application/json
 
@@ -27,16 +28,12 @@ Content-Type: application/json
   "password": "dudepass"
 }
 
-###
-GET http://localhost:8080/v1/products/631b735b-9f0e-4cc8-a06b-ce74d8201926
+### get product
+GET http://localhost:8080/v1/products/5f3024a2-968f-4553-98f0-c45c348ad04d
 Content-Type: application/json
 
-###
-DELETE http://localhost:8080/v1/products/631b735b-9f0e-4cc8-a06b-ce74d8201926
-Content-Type: application/json
-
-###
-PATCH http://localhost:8080/v1/products/2858644d-4ef4-4b88-b629-ffd62d311e07
+### update product
+PATCH http://localhost:8080/v1/products/4e0455c1-0237-4645-9015-382b8b710f75
 Content-Type: application/json
 
 {
@@ -45,3 +42,10 @@ Content-Type: application/json
   "price": 50000,
   "stock": 69
 }
+
+### delete product
+DELETE http://localhost:8080/v1/products/4e0455c1-0237-4645-9015-382b8b710f75
+Content-Type: application/json
+
+### get user
+GET http://localhost:8080/v1/users/335ba3b3-06ec-4e36-a66e-b333d5e79504

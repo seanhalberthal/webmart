@@ -7,8 +7,8 @@
     <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added reviews linked to posts, getPostHandler now grabs reviews using the new query">
       <change afterPath="$PROJECT_DIR$/cmd/migrate/seed/main.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/internal/db/seed.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/users.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,53 +57,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultGoTemplateProperty": "Go File",
-    "Go Build.debug.executor": "Run",
-    "Go Build.go build github.com/bssmnt/webmart.executor": "Run",
-    "Go Test.TestLoginUser in github.com/bssmnt/webmart/tests.executor": "Run",
-    "Go Test.TestLoginUser/Successful_Login in github.com/bssmnt/webmart/tests.executor": "Run",
-    "Go Test.TestLoginUser/Successful_Login_with_Username in github.com/bssmnt/webmart/tests.executor": "Run",
-    "Go Test.TestLoginUser/Wrong_HTTP_Method in github.com/bssmnt/webmart/tests.executor": "Run",
-    "Go Test.TestRegister in github.com/bssmnt/webmart/tests.executor": "Run",
-    "Go Test.TestRegister in github.com/bssmnt/webmart/tests/handlers.executor": "Run",
-    "Go Test.TestRegisterUser in github.com/bssmnt/webmart/tests.executor": "Run",
-    "Go Test.user_handlers_test.go.executor": "Run",
-    "HTTP Request.All in requests.executor": "Run",
-    "HTTP Request.requests | #1.executor": "Run",
-    "HTTP Request.requests | #2.executor": "Run",
-    "HTTP Request.requests | #3.executor": "Run",
-    "HTTP Request.requests | #4.executor": "Run",
-    "HTTP Request.requests | #5.executor": "Run",
-    "HTTP Request.requests | #6.executor": "Run",
-    "Makefile Target.migrate-up.executor": "Run",
-    "Makefile Target.migration.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "main",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/bssmnt/playground/webmart",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.appearance",
-    "sql.codeStylePanel.last.previewDialect": "SQLite"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go Build.debug.executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build github.com/bssmnt/webmart.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestLoginUser in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestLoginUser/Successful_Login in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestLoginUser/Successful_Login_with_Username in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestLoginUser/Wrong_HTTP_Method in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestRegister in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestRegister in github.com/bssmnt/webmart/tests/handlers.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestRegisterUser in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.user_handlers_test.go.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.All in requests.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.requests | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.requests | #2.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.requests | #3.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.requests | #4.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.requests | #5.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.requests | #6.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.migrate-up.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.migration.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/bssmnt/playground/webmart&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.appearance&quot;,
+    &quot;sql.codeStylePanel.last.previewDialect&quot;: &quot;SQLite&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
-      "PostgreSQL"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;PostgreSQL&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
