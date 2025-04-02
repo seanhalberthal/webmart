@@ -20,6 +20,7 @@ type Product struct {
 	Version     int       `json:"version"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
+	Reviews     []Review  `json:"reviews"`
 }
 
 type ProductStore struct {
@@ -43,6 +44,9 @@ func (s *ProductStore) ProductCreate(ctx context.Context, product *Product) erro
 
 func (s *ProductStore) ProductGet(ctx context.Context, productID uuid.UUID) (*Product, error) {
 	query := `SELECT id, user_id, title, description, price, stock, version, created_at, updated_at FROM products WHERE id = $1`
+
+	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
+	defer cancel()
 
 	row := s.db.QueryRowContext(ctx, query, productID)
 	product := &Product{}
@@ -71,6 +75,9 @@ func (s *ProductStore) ProductGet(ctx context.Context, productID uuid.UUID) (*Pr
 func (s *ProductStore) ProductDelete(ctx context.Context, productID uuid.UUID) error {
 	query := `DELETE FROM products WHERE id = $1`
 
+	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
+	defer cancel()
+
 	res, err := s.db.ExecContext(ctx, query, productID)
 	if err != nil {
 		return err
@@ -90,6 +97,9 @@ func (s *ProductStore) ProductDelete(ctx context.Context, productID uuid.UUID) e
 
 func (s *ProductStore) ProductUpdate(ctx context.Context, product *Product) error {
 	query := `UPDATE products SET title = $1, description = $2, version = version + 1 WHERE id = $3 AND version = $4 RETURNING version`
+
+	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
+	defer cancel()
 
 	err := s.db.QueryRowContext(ctx, query, product.Title, product.Description, product.ID, product.Version).Scan(&product.Version)
 	if err != nil {

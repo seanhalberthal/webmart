@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="refactored some of the JSON response logic">
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added versions to products to mitigate conflict during updates">
+      <change afterPath="$PROJECT_DIR$/internal/db/seed.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/store/reviews_store.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/products.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/products.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/store/products_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/products_store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/store/storage.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/storage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/store/users_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/users_store.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +95,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "editor.preferences.appearance",
     "sql.codeStylePanel.last.previewDialect": "SQLite"
   },
   "keyToStringList": {
@@ -216,7 +221,8 @@
     <MESSAGE value="reformatted error handling and added product deletion" />
     <MESSAGE value="added update product handler" />
     <MESSAGE value="refactored some of the JSON response logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored some of the JSON response logic" />
+    <MESSAGE value="added versions to products to mitigate conflict during updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="added versions to products to mitigate conflict during updates" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

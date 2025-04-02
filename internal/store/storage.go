@@ -5,6 +5,11 @@ import (
 	"database/sql"
 	"github.com/google/uuid"
 	_ "github.com/lib/pq"
+	"time"
+)
+
+var (
+	QueryTimeoutDuration = time.Second * 5
 )
 
 type Storage struct {
@@ -18,11 +23,16 @@ type Storage struct {
 	Users interface {
 		UserCreate(context.Context, *User) error
 	}
+
+	Reviews interface {
+		ReviewGet(context.Context, uuid.UUID) ([]Review, error)
+	}
 }
 
 func NewStorage(db *sql.DB) Storage {
 	return Storage{
 		Products: &ProductStore{db},
 		Users:    &UserStore{db},
+		Reviews:  &ReviewStore{db},
 	}
 }

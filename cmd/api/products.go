@@ -65,6 +65,14 @@ func (app *application) getProductHandler(w http.ResponseWriter, r *http.Request
 		return
 	}
 
+	reviews, err := app.store.Reviews.ReviewGet(ctx, id)
+	if err != nil {
+		handleError(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	product.Reviews = reviews
+
 	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(product); err != nil {
 		handleError(w, http.StatusInternalServerError, err)
