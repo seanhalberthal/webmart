@@ -1,9 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/seanhalberthal/webmart/docs"
 	"github.com/seanhalberthal/webmart/internal/store"
+	httpSwagger "github.com/swaggo/http-swagger/v2" // http-swagger middleware
 	"log"
 	"net/http"
 	"time"
@@ -15,9 +18,10 @@ type application struct {
 }
 
 type config struct {
-	addr string
-	db   dbConfig
-	env  string
+	addr   string
+	apiURL string
+	db     dbConfig
+	env    string
 }
 
 type dbConfig struct {
@@ -44,6 +48,10 @@ func (app *application) routes() http.Handler {
 
 	mux.Route("/v1", func(r chi.Router) {
 		r.Get("/health", app.healthCheckHandler)
+
+		docsURL := fmt.Sprintf("%s/swagger/doc.json", app.config.addr)
+		r.Get("/swagger/*", httpSwagger.Handler(
+			httpSwagger.URL(docsURL)))
 
 		r.Route("/products", func(r chi.Router) {
 			r.Post("/", app.createProductHandler)
@@ -72,6 +80,10 @@ func (app *application) routes() http.Handler {
 }
 
 func (app *application) serve(mux http.Handler) error {
+	// Docs
+	docs.SwaggerInfo.Version = version
+	docs.SwaggerInfo.Host = app.config.apiURL
+	docs.SwaggerInfo.BasePath = "/v1"
 
 	srv := &http.Server{
 		Addr:         app.config.addr,
