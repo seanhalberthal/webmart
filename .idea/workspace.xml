@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added swagger docs which auto generate and format when using air to run server">
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added some more swagger documentation for user and product endpoints">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/products.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/products.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/users.go" afterDir="false" />
@@ -229,7 +230,8 @@
     <MESSAGE value="added reviews linked to posts, getPostHandler now grabs reviews using the new query" />
     <MESSAGE value="cleaned up some code, made sure that getUserHandler endpoint functions correctly" />
     <MESSAGE value="added swagger docs which auto generate and format when using air to run server" />
-    <option name="LAST_COMMIT_MESSAGE" value="added swagger docs which auto generate and format when using air to run server" />
+    <MESSAGE value="added some more swagger documentation for user and product endpoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some more swagger documentation for user and product endpoints" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

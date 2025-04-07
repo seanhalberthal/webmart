@@ -35,3 +35,4 @@ go.work.sum
 # currently unused files
 /internal/db/seed.go
 /cmd/migrate/seed/*
+requests.http
