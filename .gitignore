@@ -29,6 +29,9 @@ go.work.sum
 # logs
 .idea/*
 
+# my swagger docs
+/docs
+
 # currently unused files
-internal/db/seed.go
-cmd/migrate/seed/*
+/internal/db/seed.go
+/cmd/migrate/seed/*

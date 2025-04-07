@@ -26,6 +26,17 @@ func getProductID(w http.ResponseWriter, r *http.Request) uuid.UUID {
 	return id
 }
 
+// CreateProduct godoc
+//
+//	@Summary	Create a new product listing
+//	@Tags		products
+//	@Accept		json
+//	@Produce	json
+//	@Param		body	body		CreateProductPayload	true	"Product creation payload"
+//	@Success	201		{object}	store.Product
+//	@Failure	400		{object}	error
+//	@Failure	500		{object}	error
+//	@Router		/products [post]
 func (app *application) createProductHandler(w http.ResponseWriter, r *http.Request) {
 	var payload CreateProductPayload
 	if err := readJSON(w, r, &payload); err != nil {
@@ -55,6 +66,17 @@ func (app *application) createProductHandler(w http.ResponseWriter, r *http.Requ
 	}
 }
 
+// GetProduct godoc
+//
+//	@Summary	Fetches a product by ID
+//	@Tags		products
+//	@Accept		json
+//	@Produce	json
+//	@Param		id	path		int	true	"Product ID"
+//	@Success	200	{object}	store.Product
+//	@Failure	404	{object}	error
+//	@Failure	500	{object}	error
+//	@Router		/products/{id} [get]
 func (app *application) getProductHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	id := getProductID(w, r)
@@ -80,6 +102,14 @@ func (app *application) getProductHandler(w http.ResponseWriter, r *http.Request
 	}
 }
 
+// DeleteProduct godoc
+//
+//	@Summary	Delete product by ID
+//	@Tags		products
+//	@Param		id	path		int		true	"Product ID"
+//	@Success	204	{string}	string	"Product deleted successfully"
+//	@Failure	404	{object}	error
+//	@Router		/products/{id} [delete]
 func (app *application) deleteProductHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	id := getProductID(w, r)
@@ -89,6 +119,8 @@ func (app *application) deleteProductHandler(w http.ResponseWriter, r *http.Requ
 		handleError(w, http.StatusNotFound, err)
 		return
 	}
+
+	w.WriteHeader(http.StatusNoContent)
 }
 
 type UpdateProductPayload struct {
@@ -98,6 +130,20 @@ type UpdateProductPayload struct {
 	Stock       int     `json:"stock" validate:"omitempty,min=0"`
 }
 
+// UpdateProduct godoc
+//
+//	@Summary		Update a product
+//	@Description	Updates an existing product by ID
+//	@Tags			products
+//	@Accept			json
+//	@Produce		json
+//	@Param			id		path		int						true	"Product ID"
+//	@Param			body	body		UpdateProductPayload	true	"Updated product data"
+//	@Success		200		{object}	store.Product
+//	@Failure		400		{object}	error
+//	@Failure		404		{object}	error
+//	@Failure		500		{object}	error
+//	@Router			/products/{id} [patch]
 func (app *application) updateProductHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	id := getProductID(w, r)

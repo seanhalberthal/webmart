@@ -25,6 +25,18 @@ func getUserID(w http.ResponseWriter, r *http.Request) uuid.UUID {
 	return id
 }
 
+// CreateUser godoc
+//
+//	@Summary	Create a new user
+//	@Tags		users
+//	@Accept		json
+//	@Produce	json
+//	@Param		user	body		CreateUserPayload	true	"User creation payload"
+//	@Success	201		{object}	store.User
+//	@Failure	400		{object}	error
+//	@Failure	500		{object}	error
+//	@Security	ApiKeyAuth
+//	@Router		/users [post]
 func (app *application) createUserHandler(w http.ResponseWriter, r *http.Request) {
 	var payload CreateUserPayload
 	if err := readJSON(w, r, &payload); err != nil {
@@ -51,6 +63,19 @@ func (app *application) createUserHandler(w http.ResponseWriter, r *http.Request
 	}
 }
 
+// GetUser godoc
+//
+//	@Summary	Fetches a user profile by ID
+//	@Tags		users
+//	@Accept		json
+//	@Produce	json
+//	@Param		id	path		int	true	"User ID"
+//	@Success	200	{object}	store.User
+//	@Failure	400	{object}	error
+//	@Failure	404	{object}	error
+//	@Failure	500	{object}	error
+//	@Security	ApiKeyAuth
+//	@Router		/users/{id} [get]
 func (app *application) getUserHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	id := getUserID(w, r)

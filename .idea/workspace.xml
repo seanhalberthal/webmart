@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="cleaned up some code, made sure that getUserHandler endpoint functions correctly">
-      <change beforePath="$PROJECT_DIR$/.air.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.air.toml" afterDir="false" />
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added swagger docs which auto generate and format when using air to run server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/products.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/products.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/users.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +228,8 @@
     <MESSAGE value="added versions to products to mitigate conflict during updates" />
     <MESSAGE value="added reviews linked to posts, getPostHandler now grabs reviews using the new query" />
     <MESSAGE value="cleaned up some code, made sure that getUserHandler endpoint functions correctly" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned up some code, made sure that getUserHandler endpoint functions correctly" />
+    <MESSAGE value="added swagger docs which auto generate and format when using air to run server" />
+    <option name="LAST_COMMIT_MESSAGE" value="added swagger docs which auto generate and format when using air to run server" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
