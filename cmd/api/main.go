@@ -2,10 +2,10 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"github.com/seanhalberthal/webmart/internal/db"
 	"github.com/seanhalberthal/webmart/internal/env"
 	"github.com/seanhalberthal/webmart/internal/store"
+	"go.uber.org/zap"
 	"log"
 )
 
@@ -42,29 +42,38 @@ func main() {
 		env: env.GetString("ENV", "development"),
 	}
 
+	// Logger
+	logger := zap.Must(zap.NewProduction()).Sugar()
+	defer func(logger *zap.SugaredLogger) {
+		err := logger.Sync()
+		if err != nil {
+			panic(err)
+		}
+	}(logger)
+
+	// Database
 	database, err := db.New(cfg.db.addr, cfg.db.maxOpenConns, cfg.db.maxIdleConns, cfg.db.maxIdleTime)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(database)
-
 	defer func(database *sql.DB) {
 		err := database.Close()
 		if err != nil {
-			log.Fatal(err)
+			logger.Fatal(err)
 		}
 	}(database)
-	fmt.Println("database connection established")
+	logger.Info("database connection established")
 
 	storage := store.NewStorage(database)
 
 	app := &application{
 		config: cfg,
 		store:  storage,
+		logger: logger,
 	}
 
 	mux := app.routes()
 
-	log.Fatal(app.serve(mux))
+	logger.Fatal(app.serve(mux))
 }

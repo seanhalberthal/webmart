@@ -7,7 +7,7 @@ import (
 	"github.com/seanhalberthal/webmart/docs"
 	"github.com/seanhalberthal/webmart/internal/store"
 	httpSwagger "github.com/swaggo/http-swagger/v2" // http-swagger middleware
-	"log"
+	"go.uber.org/zap"
 	"net/http"
 	"time"
 )
@@ -15,6 +15,7 @@ import (
 type application struct {
 	config config
 	store  store.Storage
+	logger *zap.SugaredLogger
 }
 
 type config struct {
@@ -93,7 +94,7 @@ func (app *application) serve(mux http.Handler) error {
 		IdleTimeout:  time.Minute,
 	}
 
-	log.Printf("listening on %s", app.config.addr)
+	app.logger.Infow("listening on", "addr", app.config.addr, "env", app.config.env)
 
 	return srv.ListenAndServe()
 }
