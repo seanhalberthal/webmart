@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"errors"
 	"github.com/google/uuid"
+	"golang.org/x/crypto/bcrypt"
 	"time"
 )
 
@@ -13,8 +14,25 @@ type User struct {
 	Name      string    `json:"name"`
 	Username  string    `json:"username"`
 	Email     string    `json:"email"`
-	Password  string    `json:"-"`
+	Password  Password  `json:"-"`
 	CreatedAt time.Time `json:"created_at"`
+}
+
+type Password struct {
+	Text *string
+	Hash []byte
+}
+
+func (p *Password) Set(text string) error {
+	hash, err := bcrypt.GenerateFromPassword([]byte(text), bcrypt.DefaultCost)
+	if err != nil {
+		return err
+	}
+
+	p.Text = &text
+	p.Hash = hash
+
+	return nil
 }
 
 type UserStore struct {
@@ -22,7 +40,7 @@ type UserStore struct {
 }
 
 func (s *UserStore) UserCreate(ctx context.Context, user *User) error {
-	query := `INSERT INTO users (name, username, email, password) VALUES ($1, $2, $3, $4)
+	query := `INSERT INTO users (name, username, email, Password) VALUES ($1, $2, $3, $4)
 	RETURNING id, created_at`
 
 	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
@@ -38,7 +56,7 @@ func (s *UserStore) UserCreate(ctx context.Context, user *User) error {
 }
 
 func (s *UserStore) UserGet(ctx context.Context, userID uuid.UUID) (*User, error) {
-	query := `SELECT id, username, email, password, created_at FROM users WHERE id = $1`
+	query := `SELECT id, username, email, Password, created_at FROM users WHERE id = $1`
 
 	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
 	defer cancel()

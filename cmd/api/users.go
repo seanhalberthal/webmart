@@ -48,7 +48,7 @@ func (app *application) createUserHandler(w http.ResponseWriter, r *http.Request
 		Name:      payload.Name,
 		Username:  payload.Username,
 		Email:     payload.Email,
-		Password:  payload.Password,
+		Password:  store.Password{Text: &payload.Password, Hash: []byte(payload.Password)},
 		CreatedAt: payload.CreatedAt,
 	}
 

@@ -38,3 +38,20 @@ func NewStorage(db *sql.DB) Storage {
 		Reviews:  &ReviewStore{db},
 	}
 }
+
+//func withTx(db *sql.DB, ctx context.Context, fn func(*sql.Tx) error) error {
+//	tx, err := db.BeginTx(ctx, nil)
+//	if err != nil {
+//		return err
+//	}
+//
+//	if err = fn(tx); err != nil {
+//		rbErr := tx.Rollback()
+//		if rbErr != nil {
+//			return rbErr
+//		}
+//		return err
+//	}
+//
+//	return tx.Commit()
+//}

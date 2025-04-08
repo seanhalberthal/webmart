@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="added some swagger comment blocks for health handler">
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="started adding auth logic">
+      <change afterPath="$PROJECT_DIR$/cmd/api/auth.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/migrate/migrations/000006_add_activated_to_user.down.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/migrate/migrations/000006_add_activated_to_user.up.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/store/storage.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/storage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/store/users_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/users_store.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +51,7 @@
   &quot;isMigrated&quot;: true
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -58,61 +62,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go Build.debug.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build github.com/bssmnt/webmart.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestLoginUser in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestLoginUser/Successful_Login in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestLoginUser/Successful_Login_with_Username in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestLoginUser/Wrong_HTTP_Method in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestRegister in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestRegister in github.com/bssmnt/webmart/tests/handlers.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestRegisterUser in github.com/bssmnt/webmart/tests.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.user_handlers_test.go.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.All in requests.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | #1.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | #2.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | #3.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | #4.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | #5.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | #6.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | #7.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | create product.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | create user.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | delete product.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | get product.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | get user.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | health check.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.requests | update product.executor&quot;: &quot;Run&quot;,
-    &quot;Makefile Target.migrate-up.executor&quot;: &quot;Run&quot;,
-    &quot;Makefile Target.migration.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/bssmnt/playground/webmart&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.appearance&quot;,
-    &quot;sql.codeStylePanel.last.previewDialect&quot;: &quot;SQLite&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.debug.executor": "Run",
+    "Go Build.go build github.com/bssmnt/webmart.executor": "Run",
+    "Go Test.TestLoginUser in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.TestLoginUser/Successful_Login in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.TestLoginUser/Successful_Login_with_Username in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.TestLoginUser/Wrong_HTTP_Method in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.TestRegister in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.TestRegister in github.com/bssmnt/webmart/tests/handlers.executor": "Run",
+    "Go Test.TestRegisterUser in github.com/bssmnt/webmart/tests.executor": "Run",
+    "Go Test.user_handlers_test.go.executor": "Run",
+    "HTTP Request.All in requests.executor": "Run",
+    "HTTP Request.requests | #1.executor": "Run",
+    "HTTP Request.requests | #2.executor": "Run",
+    "HTTP Request.requests | #3.executor": "Run",
+    "HTTP Request.requests | #4.executor": "Run",
+    "HTTP Request.requests | #5.executor": "Run",
+    "HTTP Request.requests | #6.executor": "Run",
+    "HTTP Request.requests | #7.executor": "Run",
+    "HTTP Request.requests | create product.executor": "Run",
+    "HTTP Request.requests | create user.executor": "Run",
+    "HTTP Request.requests | delete product.executor": "Run",
+    "HTTP Request.requests | get product.executor": "Run",
+    "HTTP Request.requests | get user.executor": "Run",
+    "HTTP Request.requests | health check.executor": "Run",
+    "HTTP Request.requests | update product.executor": "Run",
+    "Makefile Target.migrate-up.executor": "Run",
+    "Makefile Target.migration.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/bssmnt/playground/webmart",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "editor.preferences.appearance",
+    "sql.codeStylePanel.last.previewDialect": "SQLite"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
-      &quot;PostgreSQL&quot;
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "PostgreSQL"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -209,8 +214,6 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed .env lmao" />
-    <MESSAGE value="3rd init, still building the rough framework, already incorporated password hashing and register user function, server currently starts and runs on port :8080" />
     <MESSAGE value="changed formatting on println on main for serve and listen" />
     <MESSAGE value="added some more user functionality like login, and added jwt and refresh tokens" />
     <MESSAGE value="added some tests for register user, created wrappers for GORM" />
@@ -234,7 +237,9 @@
     <MESSAGE value="added some more swagger documentation for user and product endpoints" />
     <MESSAGE value="updated gitignore" />
     <MESSAGE value="added some swagger comment blocks for health handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some swagger comment blocks for health handler" />
+    <MESSAGE value="added some structured logging using zap" />
+    <MESSAGE value="started adding auth logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="started adding auth logic" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
