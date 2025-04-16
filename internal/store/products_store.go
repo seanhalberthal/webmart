@@ -23,11 +23,26 @@ type Product struct {
 	Reviews     []Review  `json:"reviews"`
 }
 
+type ProductSummary struct {
+	ID        uuid.UUID `json:"id"`
+	UserID    uuid.UUID `json:"user_id"`
+	Title     string    `json:"title"`
+	Rating    int       `json:"rating"`
+	Price     float64   `json:"price"`
+	Version   int       `json:"version"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+}
+
 type ProductStore struct {
 	db *sql.DB
 }
 
 func (s *ProductStore) ProductCreate(ctx context.Context, product *Product) error {
+	if product.Version == 0 {
+		product.Version = 1
+	}
+
 	query := `INSERT INTO products (user_id, title, description, rating, price, stock) 
 		VALUES ($1, $2, $3, $4, $5, $6)
 		RETURNING id, created_at, updated_at`
@@ -72,8 +87,8 @@ func (s *ProductStore) ProductGetByID(ctx context.Context, productID uuid.UUID) 
 	return product, nil
 }
 
-func (s *ProductStore) ProductGetAll(ctx context.Context) ([]Product, error) {
-	query := `SELECT id, user_id, title, price, version, created_at, updated_at FROM products`
+func (s *ProductStore) ProductGetAll(ctx context.Context) ([]ProductSummary, error) {
+	query := `SELECT id, user_id, title, price, rating, created_at, updated_at FROM products`
 
 	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
 	defer cancel()
@@ -89,15 +104,15 @@ func (s *ProductStore) ProductGetAll(ctx context.Context) ([]Product, error) {
 		}
 	}(rows)
 
-	var products []Product
+	var products []ProductSummary
 	for rows.Next() {
-		p := Product{}
+		p := ProductSummary{}
 		if err := rows.Scan(
 			&p.ID,
 			&p.UserID,
 			&p.Title,
 			&p.Price,
-			&p.Version,
+			&p.Rating,
 			&p.CreatedAt,
 			&p.UpdatedAt); err != nil {
 			return nil, err

@@ -9,12 +9,14 @@ import (
 )
 
 type CreateProductPayload struct {
-	UserID      uuid.UUID `json:"user_id"`
-	Title       string    `json:"title"`
-	Description string    `json:"description"`
-	Rating      int       `json:"rating"`
-	Price       float64   `json:"price"`
-	Stock       int       `json:"stock"`
+	UserID      uuid.UUID      `json:"user_id"`
+	Title       string         `json:"title"`
+	Description string         `json:"description"`
+	Rating      int            `json:"rating"`
+	Price       float64        `json:"price"`
+	Stock       int            `json:"stock"`
+	Version     int            `json:"version"`
+	Reviews     []store.Review `json:"reviews"`
 }
 
 func getProductID(w http.ResponseWriter, r *http.Request) uuid.UUID {
@@ -51,6 +53,8 @@ func (app *application) createProductHandler(w http.ResponseWriter, r *http.Requ
 		Rating:      payload.Rating,
 		Price:       payload.Price,
 		Stock:       payload.Stock,
+		Version:     payload.Version,
+		Reviews:     payload.Reviews,
 	}
 
 	ctx := r.Context()

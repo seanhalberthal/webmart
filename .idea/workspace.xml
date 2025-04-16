@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="started adding auth logic">
+    <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="fixed user password hashing and storage to work in a more robust way (storing hash as text) and refactored Product Get queries for get by ID and get all">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/products.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/products.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/migrate/migrations/000001_create_users.up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/migrate/migrations/000001_create_users.up.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/db/seed.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/db/seed.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/store/products_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/products_store.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/store/storage.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/storage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/store/users_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/users_store.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +79,7 @@
     "HTTP Request.requests | #5.executor": "Run",
     "HTTP Request.requests | #6.executor": "Run",
     "HTTP Request.requests | #7.executor": "Run",
+    "HTTP Request.requests | Seed product 2.executor": "Run",
     "HTTP Request.requests | Seed product 3.executor": "Run",
     "HTTP Request.requests | Seed user 1.executor": "Run",
     "HTTP Request.requests | create product.executor": "Run",
@@ -174,33 +169,33 @@
     <configuration name="All in requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/requests.http">
       <method v="2" />
     </configuration>
+    <configuration name="requests | Seed product 1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="Seed product 1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="requests | Seed product 2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="Seed product 2" index="2" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="requests | Seed product 3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="Seed product 3" index="3" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="requests | Seed user 1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="Seed user 1" index="4" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="requests | create product" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="create product" index="2" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="requests | get product" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="get product" index="4" runType="Run single request">
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Go Build.debug" />
+      <item itemvalue="HTTP Request.requests | Seed product 1" />
+      <item itemvalue="HTTP Request.requests | Seed product 2" />
       <item itemvalue="HTTP Request.All in requests" />
       <item itemvalue="HTTP Request.requests | Seed product 3" />
       <item itemvalue="HTTP Request.requests | Seed user 1" />
-      <item itemvalue="HTTP Request.requests | create product" />
-      <item itemvalue="HTTP Request.requests | get product" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.requests | Seed product 1" />
+        <item itemvalue="HTTP Request.requests | Seed product 2" />
         <item itemvalue="HTTP Request.requests | Seed product 3" />
         <item itemvalue="HTTP Request.requests | Seed user 1" />
         <item itemvalue="HTTP Request.All in requests" />
-        <item itemvalue="HTTP Request.requests | get product" />
-        <item itemvalue="HTTP Request.requests | create product" />
       </list>
     </recent_temporary>
   </component>
@@ -217,7 +212,6 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changed formatting on println on main for serve and listen" />
     <MESSAGE value="added some more user functionality like login, and added jwt and refresh tokens" />
     <MESSAGE value="added some tests for register user, created wrappers for GORM" />
     <MESSAGE value="refined logic for loginUser function, still working on implementing tests, refresh_tokens are causing issues" />
@@ -242,7 +236,8 @@
     <MESSAGE value="added some swagger comment blocks for health handler" />
     <MESSAGE value="added some structured logging using zap" />
     <MESSAGE value="started adding auth logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="started adding auth logic" />
+    <MESSAGE value="fixed user password hashing and storage to work in a more robust way (storing hash as text) and refactored Product Get queries for get by ID and get all" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed user password hashing and storage to work in a more robust way (storing hash as text) and refactored Product Get queries for get by ID and get all" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

@@ -16,7 +16,7 @@ type Storage struct {
 	Products interface {
 		ProductCreate(context.Context, *Product) error
 		ProductGetByID(context.Context, uuid.UUID) (*Product, error)
-		ProductGetAll(context.Context) ([]Product, error)
+		ProductGetAll(context.Context) ([]ProductSummary, error)
 		ProductDelete(context.Context, uuid.UUID) error
 		ProductUpdate(context.Context, *Product) error
 	}
