@@ -40,14 +40,19 @@ type UserStore struct {
 }
 
 func (s *UserStore) UserCreate(ctx context.Context, user *User) error {
-	query := `INSERT INTO users (name, username, email, Password) VALUES ($1, $2, $3, $4)
+	query := `INSERT INTO users (name, username, email, password) VALUES ($1, $2, $3, $4)
 	RETURNING id, created_at`
+
+	err := user.Password.Set(*user.Password.Text)
+	if err != nil {
+		return err
+	}
 
 	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
 	defer cancel()
 
-	row := s.db.QueryRowContext(ctx, query, user.Name, user.Username, user.Email, user.Password)
-	err := row.Scan(&user.ID, &user.CreatedAt)
+	row := s.db.QueryRowContext(ctx, query, user.Name, user.Username, user.Email, string(user.Password.Hash))
+	err = row.Scan(&user.ID, &user.CreatedAt)
 	if err != nil {
 		return err
 	}
@@ -56,7 +61,7 @@ func (s *UserStore) UserCreate(ctx context.Context, user *User) error {
 }
 
 func (s *UserStore) UserGet(ctx context.Context, userID uuid.UUID) (*User, error) {
-	query := `SELECT id, username, email, Password, created_at FROM users WHERE id = $1`
+	query := `SELECT id, username, email, password, created_at FROM users WHERE id = $1`
 
 	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
 	defer cancel()

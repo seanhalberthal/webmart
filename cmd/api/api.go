@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/cors"
 	"github.com/seanhalberthal/webmart/docs"
 	"github.com/seanhalberthal/webmart/internal/store"
 	httpSwagger "github.com/swaggo/http-swagger/v2" // http-swagger middleware
@@ -35,6 +36,13 @@ type dbConfig struct {
 func (app *application) routes() http.Handler {
 	mux := chi.NewRouter()
 
+	mux.Use(cors.Handler(cors.Options{
+		AllowedOrigins:   []string{"http://localhost:5173"}, // React frontend
+		AllowedMethods:   []string{"GET", "POST", "DELETE", "PATCH"},
+		AllowedHeaders:   []string{"Content-Type"},
+		AllowCredentials: true,
+	}))
+
 	mux.Use(middleware.Recoverer)
 	mux.Use(middleware.Logger)
 	mux.Use(middleware.RequestID)
@@ -56,6 +64,7 @@ func (app *application) routes() http.Handler {
 
 		r.Route("/products", func(r chi.Router) {
 			r.Post("/", app.createProductHandler)
+			r.Get("/", app.getAllProductsHandler)
 
 			r.Route("/{productID}", func(r chi.Router) {
 				r.Get("/", app.getProductHandler)

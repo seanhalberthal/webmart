@@ -42,7 +42,7 @@ func (s *ProductStore) ProductCreate(ctx context.Context, product *Product) erro
 	return nil
 }
 
-func (s *ProductStore) ProductGet(ctx context.Context, productID uuid.UUID) (*Product, error) {
+func (s *ProductStore) ProductGetByID(ctx context.Context, productID uuid.UUID) (*Product, error) {
 	query := `SELECT id, user_id, title, description, price, stock, version, created_at, updated_at FROM products WHERE id = $1`
 
 	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
@@ -70,6 +70,49 @@ func (s *ProductStore) ProductGet(ctx context.Context, productID uuid.UUID) (*Pr
 	}
 
 	return product, nil
+}
+
+func (s *ProductStore) ProductGetAll(ctx context.Context) ([]Product, error) {
+	query := `SELECT id, user_id, title, price, version, created_at, updated_at FROM products`
+
+	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
+	defer cancel()
+
+	rows, err := s.db.QueryContext(ctx, query)
+	if err != nil {
+		return nil, err
+	}
+	defer func(rows *sql.Rows) {
+		err := rows.Close()
+		if err != nil {
+			return
+		}
+	}(rows)
+
+	var products []Product
+	for rows.Next() {
+		p := Product{}
+		if err := rows.Scan(
+			&p.ID,
+			&p.UserID,
+			&p.Title,
+			&p.Price,
+			&p.Version,
+			&p.CreatedAt,
+			&p.UpdatedAt); err != nil {
+			return nil, err
+		}
+		products = append(products, p)
+	}
+
+	if err := rows.Err(); err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return nil, fmt.Errorf("product not found")
+		}
+		return nil, err
+	}
+
+	return products, nil
 }
 
 func (s *ProductStore) ProductDelete(ctx context.Context, productID uuid.UUID) error {

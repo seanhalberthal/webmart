@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4153ba60-ee4e-4962-868d-36447221aaf5" name="Changes" comment="started adding auth logic">
-      <change afterPath="$PROJECT_DIR$/cmd/api/auth.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/migrate/migrations/000006_add_activated_to_user.down.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/migrate/migrations/000006_add_activated_to_user.up.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/products.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/products.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/migrate/migrations/000001_create_users.up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/migrate/migrations/000001_create_users.up.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/db/seed.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/db/seed.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/store/products_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/products_store.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/store/storage.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/storage.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/store/users_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/store/users_store.go" afterDir="false" />
     </list>
@@ -84,6 +85,8 @@
     "HTTP Request.requests | #5.executor": "Run",
     "HTTP Request.requests | #6.executor": "Run",
     "HTTP Request.requests | #7.executor": "Run",
+    "HTTP Request.requests | Seed product 3.executor": "Run",
+    "HTTP Request.requests | Seed user 1.executor": "Run",
     "HTTP Request.requests | create product.executor": "Run",
     "HTTP Request.requests | create user.executor": "Run",
     "HTTP Request.requests | delete product.executor": "Run",
@@ -168,36 +171,36 @@
       <framework value="gotest" />
       <method v="2" />
     </configuration>
-    <configuration name="requests | create product" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="create product" index="2" runType="Run single request">
+    <configuration name="All in requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/requests.http">
       <method v="2" />
     </configuration>
-    <configuration name="requests | delete product" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="delete product" index="6" runType="Run single request">
+    <configuration name="requests | Seed product 3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="Seed product 3" index="3" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="requests | Seed user 1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="Seed user 1" index="4" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="requests | create product" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="create product" index="2" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="requests | get product" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="get product" index="4" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="requests | get user" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="get user" index="7" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="requests | update product" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/requests.http" executionIdentifier="update product" index="5" runType="Run single request">
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Go Build.debug" />
+      <item itemvalue="HTTP Request.All in requests" />
+      <item itemvalue="HTTP Request.requests | Seed product 3" />
+      <item itemvalue="HTTP Request.requests | Seed user 1" />
       <item itemvalue="HTTP Request.requests | create product" />
-      <item itemvalue="HTTP Request.requests | delete product" />
       <item itemvalue="HTTP Request.requests | get product" />
-      <item itemvalue="HTTP Request.requests | get user" />
-      <item itemvalue="HTTP Request.requests | update product" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.requests | Seed product 3" />
+        <item itemvalue="HTTP Request.requests | Seed user 1" />
+        <item itemvalue="HTTP Request.All in requests" />
         <item itemvalue="HTTP Request.requests | get product" />
         <item itemvalue="HTTP Request.requests | create product" />
-        <item itemvalue="HTTP Request.requests | get user" />
-        <item itemvalue="HTTP Request.requests | delete product" />
-        <item itemvalue="HTTP Request.requests | update product" />
       </list>
     </recent_temporary>
   </component>

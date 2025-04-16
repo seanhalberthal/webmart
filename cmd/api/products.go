@@ -81,7 +81,7 @@ func (app *application) getProductHandler(w http.ResponseWriter, r *http.Request
 	ctx := r.Context()
 	id := getProductID(w, r)
 
-	product, err := app.store.Products.ProductGet(ctx, id)
+	product, err := app.store.Products.ProductGetByID(ctx, id)
 	if err != nil {
 		handleError(w, http.StatusNotFound, err)
 		return
@@ -100,6 +100,24 @@ func (app *application) getProductHandler(w http.ResponseWriter, r *http.Request
 		handleError(w, http.StatusInternalServerError, err)
 		return
 	}
+}
+
+func (app *application) getAllProductsHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+
+	products, err := app.store.Products.ProductGetAll(ctx)
+	if err != nil {
+		handleError(w, http.StatusNotFound, err)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	if err := json.NewEncoder(w).Encode(products); err != nil {
+		handleError(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
 }
 
 // DeleteProduct godoc
@@ -154,7 +172,7 @@ func (app *application) updateProductHandler(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	product, err := app.store.Products.ProductGet(ctx, id)
+	product, err := app.store.Products.ProductGetByID(ctx, id)
 	if err != nil {
 		handleError(w, http.StatusNotFound, err)
 		return
